@@ -51,10 +51,11 @@ namespace PlayerCode
         public void FixedUpdate()
         {
             _playerMovement.FixedUpdate(Time.fixedDeltaTime);
+            _cameraFollow.LateUpdate(Time.fixedDeltaTime);
         }
         public void LateUpdate()
         {
-            _cameraFollow.LateUpdate(Time.deltaTime);
+            
         }
     }
 }

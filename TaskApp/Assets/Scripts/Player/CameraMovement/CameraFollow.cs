@@ -24,7 +24,6 @@ namespace PlayerCode
             _targetPosition = GetCameraFollowPosition(_offset,
                 _playerTarget.position);
 
-            // ќграничение позиции камеры границами карты
             float clampedX = Mathf.Clamp(_targetPosition.x, _bounds.minX, _bounds.maxX);
             float clampedZ = Mathf.Clamp(_targetPosition.z, _bounds.minZ, _bounds.maxZ);
 
