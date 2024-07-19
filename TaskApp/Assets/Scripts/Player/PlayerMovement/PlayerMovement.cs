@@ -1,3 +1,4 @@
+using GameSO;
 using Input;
 using UnityEngine;
 
@@ -15,11 +16,13 @@ namespace PlayerCode
         public Vector3 Movement { get; private set; }
 
         public PlayerMovement(Rigidbody rb,
-            IMovementInput movementInput)
+            IMovementInput movementInput,
+            PlayerSO playerSO)
         {
             _rb = rb;
             _playerTransform = _rb.transform;
             _movementInput = movementInput;
+            _movementSpeed = playerSO.MovementSpeed;
         }
 
         public void Update(float ticks

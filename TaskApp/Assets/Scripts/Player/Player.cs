@@ -1,6 +1,6 @@
 using BootLogic;
+using GameSO;
 using Input;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -10,48 +10,37 @@ namespace PlayerCode
     {
         [SerializeField] private Rigidbody _rb;
         [SerializeField] private Transform _cameraObjectTransform;
-        [SerializeField] private float _minX, _maxX, _minZ, _maxZ;
+        [SerializeField] private PlayerSO _playerSO;
+        
 
-        private Transform _playerTransform;
+        public Transform PlayerTransform { get; private set; }
 
-        CameraFollow _cameraFollow;
         PlayerMovement _playerMovement;
-        PlayerRotation _playerRotation;
+        public PlayerRotation PlayerRotation { get; private set; }
 
         IMovementInput _movementInput;
 
-        void Start()
+        public void Initialize(IMovementInput movementInput
+            )
         {
-            _playerTransform = _rb.transform;
+            PlayerTransform = _rb.transform;
 
-            _movementInput = GameCore.Instance().InputServiceProvider.
-                Get(typeof(MovementInputService)) 
-                as MovementInputService;
-
-            var bounds = new CameraBounds()
-            {
-                maxX = _maxX,
-                minZ = _minZ,
-                maxZ = _maxZ,
-                minX = _minX,
-            };
-            _cameraFollow = new CameraFollow(_playerTransform,
-                _cameraObjectTransform, bounds);
             _playerMovement = new PlayerMovement(_rb,
-                _movementInput);
-            _playerRotation = new PlayerRotation(_playerMovement, _playerTransform);
+                _movementInput, _playerSO);
+
+            PlayerRotation =
+                new PlayerRotation(_playerMovement, PlayerTransform);
         }
 
         public void Update()
         {
             _playerMovement.Update(Time.deltaTime);
-            _playerRotation.Update(Time.deltaTime);
+            PlayerRotation.Update(Time.deltaTime);
         }
 
         public void FixedUpdate()
         {
             _playerMovement.FixedUpdate(Time.fixedDeltaTime);
-            _cameraFollow.LateUpdate(Time.fixedDeltaTime);
         }
         public void LateUpdate()
         {

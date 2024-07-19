@@ -1,37 +1,40 @@
+using GameSO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace PlayerCode
 {
-    internal class CameraFollow
+    public class CameraFollow : MonoBehaviour
     {
+        [SerializeField] private Transform _cameraObject;
+        [SerializeField] private BoundsXZ _cameraBounds;
         private Transform _playerTarget;
         private Transform _cameraObj;
         private Vector3 _targetPosition;
         private Vector3 _offset;
-        private CameraBounds _bounds;
-        public CameraFollow(Transform playerTarget, Transform cameraObject, CameraBounds bounds)
+
+        public void Initialize(Transform playerTarget)
         {
             _playerTarget = playerTarget;
-            _cameraObj = cameraObject;
-            _offset = playerTarget.position - cameraObject.position;
-            _bounds = bounds;
+            _offset = playerTarget.position - _cameraObject.position;
         }
 
-        public void LateUpdate(float ticks)
+        public void FixedUpdate()
         {
             _targetPosition = GetCameraFollowPosition(_offset,
                 _playerTarget.position);
 
-            float clampedX = Mathf.Clamp(_targetPosition.x, _bounds.minX, _bounds.maxX);
-            float clampedZ = Mathf.Clamp(_targetPosition.z, _bounds.minZ, _bounds.maxZ);
+            float clampedX = Mathf.Clamp(_targetPosition.x,
+                _cameraBounds.minX, _cameraBounds.maxX);
+            float clampedZ = Mathf.Clamp(_targetPosition.z,
+                _cameraBounds.minZ, _cameraBounds.maxZ);
 
             Vector3 clampedPosition = new Vector3(clampedX, _targetPosition.y,
                 clampedZ);
 
             Vector3 newPos = Vector3.Lerp(_cameraObj.position
-                ,clampedPosition, ticks);
+                ,clampedPosition, Time.fixedDeltaTime);
 
             _cameraObj.position = newPos;
         }
