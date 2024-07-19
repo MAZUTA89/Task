@@ -25,8 +25,6 @@ namespace PlayerCode
             Vector3 newPos = Vector3.Lerp(_cameraObj.position
                 ,_targetPosition, ticks);
 
-            Debug.Log(newPos);
-
             _cameraObj.position = newPos;
         }
 
