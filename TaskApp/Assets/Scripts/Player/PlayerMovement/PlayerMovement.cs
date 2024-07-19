@@ -3,37 +3,37 @@ using UnityEngine;
 
 namespace PlayerCode
 {
-    internal class PlayerMovement
+    public class PlayerMovement
     {
-        CharacterController _controller;
+        Rigidbody _rb;
         Transform _playerTransform;
         Vector3 _direction;
         IMovementInput _movementInput;
 
-        float _movementSpeed = 10f;
+        float _movementSpeed = 4f;
 
-        public PlayerMovement(CharacterController playerController,
+        public Vector3 Movement { get; private set; }
+
+        public PlayerMovement(Rigidbody rb,
             IMovementInput movementInput)
         {
-            _controller = playerController;
-            _playerTransform = playerController.transform;
+            _rb = rb;
+            _playerTransform = _rb.transform;
             _movementInput = movementInput;
         }
 
         public void Update(float ticks
             )
         {
-            //_direction = (mousePosition -
-            //    _playerTransform.position).normalized;
-
             Vector2 input = _movementInput.GetMovement();
+            Movement = new Vector3(input.x, 0, input.y);
+        }
 
-            Vector3 movement = new Vector3(input.x, 
-                0, input.y);
-
-            movement = Vector3.ClampMagnitude(movement, _movementSpeed * ticks
-                ) ;
-            _controller.Move(movement);
+        public void FixedUpdate(float fixedTicks)
+        {
+            Vector3 newPos = Vector3.Lerp(_rb.position,
+                _rb.position + Movement * _movementSpeed, fixedTicks);
+            _rb.MovePosition(newPos);
         }
     }
 }

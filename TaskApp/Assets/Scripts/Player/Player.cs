@@ -8,35 +8,53 @@ namespace PlayerCode
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] private CharacterController _playerController;
+        [SerializeField] private Rigidbody _rb;
         [SerializeField] private Transform _cameraObjectTransform;
+        [SerializeField] private float _minX, _maxX, _minZ, _maxZ;
 
         private Transform _playerTransform;
 
         CameraFollow _cameraFollow;
         PlayerMovement _playerMovement;
+        PlayerRotation _playerRotation;
 
         IMovementInput _movementInput;
 
         void Start()
         {
-            Debug.Log("Загружаю game scene!");
-            _playerTransform = _playerController.transform;
+            _playerTransform = _rb.transform;
 
             _movementInput = GameCore.Instance().InputServiceProvider.
                 Get(typeof(MovementInputService)) 
                 as MovementInputService;
 
+            var bounds = new CameraBounds()
+            {
+                maxX = _maxX,
+                minZ = _minZ,
+                maxZ = _maxZ,
+                minX = _minX,
+            };
             _cameraFollow = new CameraFollow(_playerTransform,
-                _cameraObjectTransform);
-            _playerMovement = new PlayerMovement(_playerController,
+                _cameraObjectTransform, bounds);
+            _playerMovement = new PlayerMovement(_rb,
                 _movementInput);
+            _playerRotation = new PlayerRotation(_playerMovement, _playerTransform);
         }
 
         public void Update()
         {
-            _cameraFollow.Update(Time.deltaTime);
             _playerMovement.Update(Time.deltaTime);
+            _playerRotation.Update(Time.deltaTime);
+        }
+
+        public void FixedUpdate()
+        {
+            _playerMovement.FixedUpdate(Time.fixedDeltaTime);
+        }
+        public void LateUpdate()
+        {
+            _cameraFollow.LateUpdate(Time.deltaTime);
         }
     }
 }
