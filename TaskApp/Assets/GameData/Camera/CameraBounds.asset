@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee759ac8d0a1f9640b8608177cf7a5bd, type: 3}
   m_Name: CameraBounds
   m_EditorClassIdentifier: 
-  minX: -0.42
-  maxX: 0.45
+  minX: -1.33
+  maxX: 1.32
   minZ: -11.4
   maxZ: 11.9

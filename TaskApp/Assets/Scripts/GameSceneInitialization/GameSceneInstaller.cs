@@ -12,10 +12,10 @@ namespace GameSceneInitialization
         Player _player;
         CameraFollow _cameraFollow;
 
-        private void OnEnable()
+        private void Start()
         {
             _player = GetComponentInChildren<Player>();
-            _cameraFollow = GetComponent<CameraFollow>();
+            _cameraFollow = GetComponentInChildren<CameraFollow>();
 
 
             var movementInput = GameCore.Instance().InputServiceProvider.

@@ -10,7 +10,6 @@ namespace PlayerCode
         [SerializeField] private Transform _cameraObject;
         [SerializeField] private BoundsXZ _cameraBounds;
         private Transform _playerTarget;
-        private Transform _cameraObj;
         private Vector3 _targetPosition;
         private Vector3 _offset;
 
@@ -33,10 +32,10 @@ namespace PlayerCode
             Vector3 clampedPosition = new Vector3(clampedX, _targetPosition.y,
                 clampedZ);
 
-            Vector3 newPos = Vector3.Lerp(_cameraObj.position
+            Vector3 newPos = Vector3.Lerp(_cameraObject.position
                 ,clampedPosition, Time.fixedDeltaTime);
 
-            _cameraObj.position = newPos;
+            _cameraObject.position = newPos;
         }
 
         Vector3 GetCameraFollowPosition(Vector3 offset, Vector3 playerPosition)

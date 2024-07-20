@@ -23,6 +23,8 @@ namespace PlayerCode
         public void Initialize(IMovementInput movementInput
             )
         {
+            _movementInput = movementInput;
+
             PlayerTransform = _rb.transform;
 
             _playerMovement = new PlayerMovement(_rb,
