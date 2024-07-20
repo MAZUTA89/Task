@@ -11,11 +11,12 @@ namespace GameSceneInitialization
     {
         Player _player;
         CameraFollow _cameraFollow;
-
+        DangerZoneSpawner _zoneSpawner;
         private void Start()
         {
             _player = GetComponentInChildren<Player>();
             _cameraFollow = GetComponentInChildren<CameraFollow>();
+            _zoneSpawner = GetComponentInChildren<DangerZoneSpawner>();
 
 
             var movementInput = GameCore.Instance().InputServiceProvider.
@@ -24,11 +25,10 @@ namespace GameSceneInitialization
 
             _player.Initialize(movementInput);
 
-
             _cameraFollow.Initialize(_player.PlayerTransform);
-
+            _zoneSpawner.Initialize(_player.PlayerTransform);
         }
 
-        
+
     }
 }
