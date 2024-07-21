@@ -25,6 +25,8 @@ namespace PlayerCode
         {
             _movementInput = movementInput;
 
+            _movementInput.Enable();
+
             PlayerTransform = _rb.transform;
 
             PlayerTag = PlayerTransform.tag; 

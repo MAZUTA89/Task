@@ -1,4 +1,6 @@
-﻿using Input;
+﻿using GameUI;
+using Input;
+using SceneSwitch;
 using UnityEngine;
 namespace BootLogic
 {
@@ -7,13 +9,19 @@ namespace BootLogic
     {
         GameControls _inputActions;
         public InputServiceProvider InputServiceProvider { get; private set; }
+        public UI UI { get; private set; }
+
         protected override void Awake()
         {
             base.Awake();
-            Debug.Log("Загружаю Bootstrapp!");
             InitializeInputServices();
+
+            UI = GetComponent<UI>();
+
+            var sceneSwitcher = new SceneSwitcher();
+
+            UI.Initialize(sceneSwitcher);
         }
-        
 
         void InitializeInputServices()
         {

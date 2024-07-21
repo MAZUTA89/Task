@@ -65,5 +65,13 @@ namespace PlayerCode
         {
             MovementSpeed = _defaultSpeed;
         }
+        public void Lock()
+        {
+            _movementInput.Disable();
+        }
+        public void Unlock() 
+        {
+            _movementInput.Enable();
+        }
     }
 }
