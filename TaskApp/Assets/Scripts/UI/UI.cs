@@ -24,6 +24,8 @@ namespace GameUI
             FinalGamePanel.Deactivate();
 
             MainMenuPanel.Initialize(sceneSwitcher);
+            GamePanel.Initialize(sceneSwitcher);
+            GamePanel.Deactivate();
         }
 
     }

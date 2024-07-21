@@ -13,6 +13,7 @@ namespace MenuSceneInitialization
         {
             _mainMenuPanel = GameCore.Instance().UI.MainMenuPanel;
             _mainMenuPanel.Activate();
+
         }
     }
 }

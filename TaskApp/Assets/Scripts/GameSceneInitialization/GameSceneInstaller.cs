@@ -1,5 +1,6 @@
 ﻿using BootLogic;
 using DangerZoneCode;
+using GameUI;
 using Input;
 using PlayerCode;
 using System;
@@ -15,6 +16,7 @@ namespace GameSceneInitialization
         Player _player;
         CameraFollow _cameraFollow;
         DangerZoneSpawner _zoneSpawner;
+        GamePanel _gamePanel;
         private void Start()
         {
             _player = GetComponentInChildren<Player>();
@@ -38,6 +40,10 @@ namespace GameSceneInitialization
 
             _zoneSpawner.Initialize(_player.PlayerTransform,
                 speedZoneFactory, fatalZoneFactory);
+
+            _gamePanel = GameCore.Instance().UI.GamePanel;
+
+            _gamePanel.Activate();
         }
 
 
