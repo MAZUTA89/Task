@@ -4,10 +4,12 @@ using Input;
 using PlayerCode;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace GameSceneInitialization
 {
+
     public class GameSceneInstaller : MonoBehaviour
     {
         Player _player;
