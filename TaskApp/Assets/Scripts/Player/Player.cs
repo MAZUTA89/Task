@@ -11,11 +11,11 @@ namespace PlayerCode
         [SerializeField] private Rigidbody _rb;
         [SerializeField] private Transform _cameraObjectTransform;
         [SerializeField] private PlayerSO _playerSO;
-        
 
+        public string PlayerTag { get; private set; }
         public Transform PlayerTransform { get; private set; }
 
-        PlayerMovement _playerMovement;
+        public PlayerMovement PlayerMovement { get; private set; }
         public PlayerRotation PlayerRotation { get; private set; }
 
         IMovementInput _movementInput;
@@ -27,22 +27,24 @@ namespace PlayerCode
 
             PlayerTransform = _rb.transform;
 
-            _playerMovement = new PlayerMovement(_rb,
+            PlayerTag = PlayerTransform.tag; 
+
+            PlayerMovement = new PlayerMovement(_rb,
                 _movementInput, _playerSO);
 
             PlayerRotation =
-                new PlayerRotation(_playerMovement, PlayerTransform);
+                new PlayerRotation(PlayerMovement, PlayerTransform);
         }
 
         public void Update()
         {
-            _playerMovement.Update(Time.deltaTime);
+            PlayerMovement.Update(Time.deltaTime);
             PlayerRotation.Update(Time.deltaTime);
         }
 
         public void FixedUpdate()
         {
-            _playerMovement.FixedUpdate(Time.fixedDeltaTime);
+            PlayerMovement.FixedUpdate(Time.fixedDeltaTime);
         }
         public void LateUpdate()
         {

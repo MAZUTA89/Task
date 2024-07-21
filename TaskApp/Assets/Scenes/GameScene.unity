@@ -544,9 +544,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d32f275322a264cb8eb21211b6ca94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedZoneTemplate: {fileID: 3977522784666753533, guid: 16773db9f4791cf4387884669f8a27e3, type: 3}
+  _speedZoneTemplate: {fileID: 5452957057731204217, guid: 16773db9f4791cf4387884669f8a27e3, type: 3}
   _speedZoneSO: {fileID: 11400000, guid: 18cf617e333565c47b9a0dbd49fa1ca2, type: 2}
-  _deathZoneTemplate: {fileID: 4491152147440010436, guid: 00a7823a7f434d74ea1208343ef9c8a6, type: 3}
+  _fatalZoneTemplate: {fileID: 1292547821982241531, guid: 00a7823a7f434d74ea1208343ef9c8a6, type: 3}
   _deathZoneSO: {fileID: 11400000, guid: 0a4a80b79c8ab7544a1c1a07c1bdc379, type: 2}
 --- !u!1 &695277678
 GameObject:
@@ -966,6 +966,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4752250711133355615, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752250711133355615, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8638947331111353817, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}

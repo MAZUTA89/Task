@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3761788874797888007}
   - component: {fileID: 1501953517842383623}
   - component: {fileID: 6663182754969266411}
+  - component: {fileID: 5452957057731204217}
   m_Layer: 0
   m_Name: DZSpeed
   m_TagString: Untagged
@@ -107,3 +108,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.48
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5452957057731204217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977522784666753533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9816af80077493048879d7fe8dc07eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedInfluenctInPrecents: 51.2

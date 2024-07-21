@@ -1,4 +1,5 @@
 ﻿using BootLogic;
+using DangerZoneCode;
 using Input;
 using PlayerCode;
 using System;
@@ -26,7 +27,15 @@ namespace GameSceneInitialization
             _player.Initialize(movementInput);
 
             _cameraFollow.Initialize(_player.PlayerTransform);
-            _zoneSpawner.Initialize(_player.PlayerTransform);
+
+            IDangerZoneFactory speedZoneFactory =
+                new DangerZoneFactory(_zoneSpawner.SpeedZoneTemplate, _player);
+
+            IDangerZoneFactory fatalZoneFactory =
+                new DangerZoneFactory(_zoneSpawner.FatalZoneTemplate, _player);
+
+            _zoneSpawner.Initialize(_player.PlayerTransform,
+                speedZoneFactory, fatalZoneFactory);
         }
 
 
