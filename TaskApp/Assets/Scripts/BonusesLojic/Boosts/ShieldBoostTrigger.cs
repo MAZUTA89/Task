@@ -9,7 +9,7 @@ namespace BonusLogic.Boosts
     {
         [SerializeField] private BoostSO BonusSO;
 
-        public override void ActivateBoost()
+        protected override void OnPlayerTriggered()
         {
             IBoost boost = new ShieldBoost(Player,
                 PlayerBoosts.BonusesPanel.SheildImage,

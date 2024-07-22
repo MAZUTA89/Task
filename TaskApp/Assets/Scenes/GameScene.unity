@@ -990,6 +990,22 @@ PrefabInstance:
       propertyPath: _playerCamera
       value: 
       objectReference: {fileID: 7613954}
+    - target: {fileID: 2396054018966621946, guid: fd90a845df5a80d4e8e198fb2f54879e, type: 3}
+      propertyPath: _invisiblePointColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396054018966621946, guid: fd90a845df5a80d4e8e198fb2f54879e, type: 3}
+      propertyPath: _invisiblePointColor.b
+      value: 0.8509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396054018966621946, guid: fd90a845df5a80d4e8e198fb2f54879e, type: 3}
+      propertyPath: _invisiblePointColor.g
+      value: 0.99215686
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396054018966621946, guid: fd90a845df5a80d4e8e198fb2f54879e, type: 3}
+      propertyPath: _invisiblePointColor.r
+      value: 0.5568628
+      objectReference: {fileID: 0}
     - target: {fileID: 2482708429280746962, guid: fd90a845df5a80d4e8e198fb2f54879e, type: 3}
       propertyPath: _rb
       value: 

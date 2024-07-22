@@ -9,6 +9,8 @@ public class CameraVisability : MonoBehaviour
     [SerializeField] private Camera _playerCamera;
     [ColorUsage(true)]
     [SerializeField] private Color _viewPointColor;
+    [ColorUsage(true)]
+    [SerializeField] private Color _invisiblePointColor;
     [SerializeField] bool _isDrawVisiblePoints;
     List<Vector3> _points;
 
@@ -62,11 +64,17 @@ public class CameraVisability : MonoBehaviour
 
         if(_playerCamera != null && _points != null)
         {
-            Gizmos.color = _viewPointColor;
+            
             foreach(var point in _points)
             {
                 if(IsPointVisible(point))
                 {
+                    Gizmos.color = _viewPointColor;
+                    Gizmos.DrawCube(point, new Vector3(0.2f, 0.2f, 0.2f));
+                }
+                else
+                {
+                    Gizmos.color = _invisiblePointColor;
                     Gizmos.DrawCube(point, new Vector3(0.2f, 0.2f, 0.2f));
                 }
             }

@@ -7,7 +7,7 @@ namespace BonusLogic.Boosts
     {
         [SerializeField] private SpeedBoostSO _speedBonusSO;
 
-        public override void ActivateBoost()
+        protected override void OnPlayerTriggered()
         {
             IBoost boost = new SpeedBoost(Player,
                 PlayerBoosts.BonusesPanel.SpeedImage, _speedBonusSO);

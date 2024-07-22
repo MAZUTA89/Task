@@ -1,33 +1,17 @@
-﻿using BonusLogic;
+﻿using BonusesLojic;
+using BonusLogic;
 using PlayerCode;
 using UnityEngine;
 
 namespace BonusLogic.Boosts
 {
-    public class BoostTrigger : MonoBehaviour
+    public abstract class BoostTrigger : BonusTrigger
     {
-        protected Player Player;
         protected PlayerBoosts PlayerBoosts;
-        public void Initialize(Player player)
+        public override void Initialize(Player player)
         {
-            Player = player;
+            base.Initialize(player);
             PlayerBoosts = Player.PlayerBoosts;
         }
-
-        protected virtual void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag(Player.PlayerTag))
-            {
-                ActivateBoost();
-
-                Destroy(gameObject);
-            }
-        }
-
-        public virtual void ActivateBoost()
-        {
-        }
-
-
     }
 }
