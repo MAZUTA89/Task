@@ -1,4 +1,5 @@
-﻿using BootLogic;
+﻿using BonusLogic;
+using BootLogic;
 using DangerZoneCode;
 using GameUI;
 using Input;
@@ -17,12 +18,16 @@ namespace GameSceneInitialization
         CameraFollow _cameraFollow;
         DangerZoneSpawner _zoneSpawner;
         GamePanel _gamePanel;
+
+        CameraVisability _cameraVisability;
+
+        BonusesSpawnSystem _bonusesSpawnSystem;
         private void Start()
         {
             _player = GetComponentInChildren<Player>();
             _cameraFollow = GetComponentInChildren<CameraFollow>();
             _zoneSpawner = GetComponentInChildren<DangerZoneSpawner>();
-
+            _bonusesSpawnSystem = GetComponentInChildren<BonusesSpawnSystem>();
 
             var movementInput = GameCore.Instance().InputServiceProvider.
                 Get(typeof(MovementInputService))
@@ -44,8 +49,10 @@ namespace GameSceneInitialization
             _gamePanel = GameCore.Instance().UI.GamePanel;
 
             _gamePanel.Activate();
+
+            _cameraVisability = GetComponentInChildren<CameraVisability>();
+
+            _bonusesSpawnSystem.Initialze(_cameraVisability, _player);
         }
-
-
     }
 }

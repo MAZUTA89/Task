@@ -1,3 +1,4 @@
+using BonusLogic;
 using BootLogic;
 using GameSO;
 using Input;
@@ -18,6 +19,8 @@ namespace PlayerCode
         public PlayerMovement PlayerMovement { get; private set; }
         public PlayerRotation PlayerRotation { get; private set; }
 
+        public PlayerBoosts PlayerBoosts { get; private set; }
+
         IMovementInput _movementInput;
 
         public void Initialize(IMovementInput movementInput
@@ -36,12 +39,18 @@ namespace PlayerCode
 
             PlayerRotation =
                 new PlayerRotation(PlayerMovement, PlayerTransform);
+
+
+            var bonusesPanel = GameCore.Instance().UI.BonusesPanel;
+
+            PlayerBoosts = new PlayerBoosts(bonusesPanel);
         }
 
         public void Update()
         {
             PlayerMovement.Update(Time.deltaTime);
             PlayerRotation.Update(Time.deltaTime);
+            PlayerBoosts.Update(Time.deltaTime);
         }
 
         public void FixedUpdate()

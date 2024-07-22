@@ -34,8 +34,11 @@ namespace Map
         List<Vector3> _stepPoints;
         private void OnValidate()
         {
-           InitializeData();
+            if (_formPoint == null)
+                return;
+            InitializeData();
             _stepPoints = GetStepPoints(StartPoint, EndPoint, _step);
+            
             Debug.Log(_stepPoints.Count);
         }
         private void OnDrawGizmosSelected()
@@ -77,7 +80,7 @@ namespace Map
 
             foreach (var point in _stepPoints)
             {
-                Gizmos.DrawSphere(point, 0.1f);
+                Gizmos.DrawCube(point, new Vector3(0.1f, 0.1f, 0.1f));
             }
         }
         List<Vector3> GetStepPoints(Vector3 start, Vector3 end, float step)
