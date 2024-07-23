@@ -10,6 +10,6 @@ public static class GameConfig
     {
         GameSceneName = "GameScene";
         MenuSceneName = "MenuScene";
-        ScoreKey = "Score";
+        ScoreKey = "GameScore";
     }
 }

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Automat
   _damage: 1
-  _range: 1
-  _speed: 0.1
+  _range: 50
+  _speed: 10

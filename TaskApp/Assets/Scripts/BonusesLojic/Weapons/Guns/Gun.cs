@@ -8,15 +8,17 @@ namespace BonusLogic.Weapon
     {
         [SerializeField] private string _name;
         [Range(1, 10)]
-        [SerializeField] private float _damage;
+        [SerializeField] private int _damage;
         [Range(1, 50)]
         [SerializeField] private float _range;
         [Range(0.1f, 10f)]
         [SerializeField] private float _speed;
+
         public string Name => _name;
-        public float Damage => _damage;
+        public int Damage => _damage;
         public float Range => _range;
         public float Speed => _speed;
+
         protected Transform _bulletPoint;
         public void Initialize(Transform bulletPoint)
         {

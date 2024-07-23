@@ -2,6 +2,7 @@
 using GameInput;
 using SceneSwitch;
 using UnityEngine;
+using Sounds;
 namespace BootLogic
 {
     [DefaultExecutionOrder(-50)]
@@ -10,6 +11,8 @@ namespace BootLogic
         GameControls _inputActions;
         public InputServiceProvider InputServiceProvider { get; private set; }
         public UI UI { get; private set; }
+
+        public SoundsService SoundsService { get; private set; }
 
         protected override void Awake()
         {
@@ -21,6 +24,8 @@ namespace BootLogic
             var sceneSwitcher = new SceneSwitcher();
 
             UI.Initialize(sceneSwitcher);
+
+            SoundsService = GetComponent<SoundsService>();
         }
 
         void InitializeInputServices()

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   _name: Shotgun
-  _damage: 1
-  _range: 1
-  _speed: 0.1
+  _damage: 2
+  _range: 7
+  _speed: 1.5

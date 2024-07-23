@@ -21,7 +21,7 @@ namespace GameInput
 
         public bool IsShoot()
         {
-            return GameControls.ShootMap.Shoot.WasPerformedThisFrame();
+            return GameControls.ShootMap.Shoot.IsPressed();
         }
     }
 }

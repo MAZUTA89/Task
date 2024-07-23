@@ -8,6 +8,7 @@ using PlayerCode;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using EnemyLogic;
 
 
 namespace GameSceneInitialization
@@ -25,6 +26,7 @@ namespace GameSceneInitialization
         BonusesSpawnSystem _bonusesSpawnSystem;
 
         WeaponService _weaponService;
+        EnemyService _enemyService;
         private void Start()
         {
             _player = GetComponentInChildren<Player>();
@@ -34,6 +36,8 @@ namespace GameSceneInitialization
             _cameraVisability = GetComponentInChildren<CameraVisability>();
 
             _weaponService = GetComponentInChildren<WeaponService>();
+
+            _enemyService = GetComponentInChildren<EnemyService>();
 
             var movementInput = GameCore.Instance().InputServiceProvider.
                 Get(typeof(MovementInputService))
@@ -65,6 +69,8 @@ namespace GameSceneInitialization
             _weaponService.Initialize(_player, shootInput);
 
             _bonusesSpawnSystem.Initialze(_cameraVisability, _player, _weaponService);
+
+            _enemyService.Initialize(_player.PlayerTransform, _cameraVisability);
         }
     }
 }

@@ -112,12 +112,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Shoot"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""2a5ab910-8b5e-498b-8ad1-4dabd4500f9d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   _name: Pistol
-  _damage: 1
-  _range: 1
-  _speed: 0.1
+  _damage: 3
+  _range: 50
+  _speed: 2
