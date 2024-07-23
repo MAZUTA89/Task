@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Input
+namespace GameInput
 {
     public abstract class InputService : IInputService
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Input
+namespace GameInput
 {
     public interface IShootInput : IInputService
     {

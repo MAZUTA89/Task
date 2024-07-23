@@ -1,8 +1,9 @@
 using BonusLogic;
 using BootLogic;
 using GameSO;
-using Input;
+using GameInput;
 using UnityEngine;
+using BonusLogic.Weapon;
 
 
 namespace PlayerCode
@@ -23,10 +24,13 @@ namespace PlayerCode
 
         IMovementInput _movementInput;
 
-        public void Initialize(IMovementInput movementInput
-            )
+        WeaponService _weaponService;
+
+        public void Initialize(IMovementInput movementInput,
+            WeaponService weaponService)
         {
             _movementInput = movementInput;
+            _weaponService = weaponService;
 
             _movementInput.Enable();
 
@@ -38,7 +42,8 @@ namespace PlayerCode
                 _movementInput, _playerSO);
 
             PlayerRotation =
-                new PlayerRotation(PlayerMovement, PlayerTransform);
+                new PlayerRotation(PlayerMovement, PlayerTransform,
+                _weaponService);
 
 
             var bonusesPanel = GameCore.Instance().UI.BonusesPanel;

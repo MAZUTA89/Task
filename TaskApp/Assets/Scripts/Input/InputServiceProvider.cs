@@ -1,5 +1,5 @@
 ﻿
-namespace Input
+namespace GameInput
 {
     public class InputServiceProvider : ServiceLocator<IInputService>
     {

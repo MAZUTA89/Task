@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Input
+namespace GameInput
 {
     public interface IInputService: IDisposable
     {

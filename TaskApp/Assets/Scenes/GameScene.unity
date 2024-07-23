@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc738fd1d8720814a9118fa88f20cf35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpawnPoint: {fileID: 55555398}
+  _bulletSpawnPoint: {fileID: 55555398}
   _gun: {fileID: 11400000, guid: 68dffaf48dac8c3438e2c29f58509be5, type: 2}
 --- !u!65 &306558952
 BoxCollider:
@@ -813,7 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc738fd1d8720814a9118fa88f20cf35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpawnPoint: {fileID: 493421330}
+  _bulletSpawnPoint: {fileID: 493421330}
   _gun: {fileID: 11400000, guid: 3e26c6fcba3af754498614ed46de40d9, type: 2}
 --- !u!1 &695277678
 GameObject:
@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc738fd1d8720814a9118fa88f20cf35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpawnPoint: {fileID: 32886523}
+  _bulletSpawnPoint: {fileID: 32886523}
   _gun: {fileID: 11400000, guid: 28bb352b4653cfa42a0dda511df5bcce, type: 2}
 --- !u!65 &1113006567
 BoxCollider:
@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc738fd1d8720814a9118fa88f20cf35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpawnPoint: {fileID: 757579417}
+  _bulletSpawnPoint: {fileID: 757579417}
   _gun: {fileID: 11400000, guid: 149a23466c973c44fa52253bb49c393c, type: 2}
 --- !u!65 &1477917526
 BoxCollider:

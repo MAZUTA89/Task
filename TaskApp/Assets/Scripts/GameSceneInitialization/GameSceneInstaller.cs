@@ -3,7 +3,7 @@ using BonusLogic.Weapon;
 using BootLogic;
 using DangerZoneCode;
 using GameUI;
-using Input;
+using GameInput;
 using PlayerCode;
 using System;
 using UnityEngine;
@@ -31,12 +31,15 @@ namespace GameSceneInitialization
             _cameraFollow = GetComponentInChildren<CameraFollow>();
             _zoneSpawner = GetComponentInChildren<DangerZoneSpawner>();
             _bonusesSpawnSystem = GetComponentInChildren<BonusesSpawnSystem>();
+            _cameraVisability = GetComponentInChildren<CameraVisability>();
+
+            _weaponService = GetComponentInChildren<WeaponService>();
 
             var movementInput = GameCore.Instance().InputServiceProvider.
                 Get(typeof(MovementInputService))
                 as MovementInputService;
 
-            _player.Initialize(movementInput);
+            _player.Initialize(movementInput, _weaponService);
 
             _cameraFollow.Initialize(_player.PlayerTransform);
 
@@ -53,9 +56,7 @@ namespace GameSceneInitialization
 
             _gamePanel.Activate();
 
-            _cameraVisability = GetComponentInChildren<CameraVisability>();
-
-            _weaponService = GetComponentInChildren<WeaponService>();
+            
 
             IShootInput shootInput = GameCore.Instance().
                 InputServiceProvider.Get(typeof(ShootInputService))

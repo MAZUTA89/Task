@@ -1,4 +1,4 @@
-﻿using Input;
+﻿using GameInput;
 using PlayerCode;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,14 @@ namespace BonusLogic.Weapon
         IWeapon _lastWeapon;
         IShootInput _shootInput;
 
+        public bool HasWeapon
+        {
+            get
+            {
+                return _currentWeapon != null;
+            }
+        }
+
         public void Initialize(Player player, IShootInput shootInput)
         {
             _weaponList = new List<IWeapon>(_weapons);
@@ -26,12 +34,14 @@ namespace BonusLogic.Weapon
         {
             if(_shootInput.IsShoot())
             {
-                _currentWeapon.Shoot();
+                _currentWeapon?.Shoot();
             }
         }
 
         public void SwitchWeapon(string gunName)
         {
+            
+
             IWeapon newWeapon = null;
             foreach (IWeapon weapon in _weaponList)
             {
@@ -43,12 +53,17 @@ namespace BonusLogic.Weapon
             }
             _lastWeapon = _currentWeapon;
 
-            if(_lastWeapon != null)
+            _currentWeapon = newWeapon;
+
+            if (_lastWeapon != null)
             {
                 _lastWeapon.GetObject().SetActive(false);
-            }
 
-            _currentWeapon = newWeapon;
+                if (_lastWeapon is Weapon weaponn)
+                {
+                    weaponn.OnSwitch();
+                }
+            }
 
             _currentWeapon.GetObject().SetActive(true);
            

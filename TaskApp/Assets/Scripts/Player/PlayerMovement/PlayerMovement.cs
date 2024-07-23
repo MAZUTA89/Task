@@ -1,5 +1,5 @@
 using GameSO;
-using Input;
+using GameInput;
 using UnityEngine;
 
 namespace PlayerCode

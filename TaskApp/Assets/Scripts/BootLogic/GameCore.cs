@@ -1,5 +1,5 @@
 ﻿using GameUI;
-using Input;
+using GameInput;
 using SceneSwitch;
 using UnityEngine;
 namespace BootLogic

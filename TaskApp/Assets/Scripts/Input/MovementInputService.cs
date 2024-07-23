@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace Input
+namespace GameInput
 {
     public class MovementInputService : InputService, IMovementInput
     {
