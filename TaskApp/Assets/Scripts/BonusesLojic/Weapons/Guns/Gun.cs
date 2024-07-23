@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Weapons
+namespace BonusLogic.Weapon
 {
     [CreateAssetMenu(fileName = "Gun", menuName = "SO/Gun")]
     public class Gun : ScriptableObject, IGun
@@ -17,9 +17,15 @@ namespace Weapons
         public float Damage => _damage;
         public float Range => _range;
         public float Speed => _speed;
+        protected Transform _bulletPoint;
+        public void Initialize(Transform bulletPoint)
+        {
+            _bulletPoint = bulletPoint;
+        }
 
         public virtual void Shoot()
         {
+
         }
     }
 }

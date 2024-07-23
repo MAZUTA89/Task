@@ -1,4 +1,5 @@
 ﻿using BonusLogic;
+using BonusLogic.Weapon;
 using BootLogic;
 using DangerZoneCode;
 using GameUI;
@@ -22,6 +23,8 @@ namespace GameSceneInitialization
         CameraVisability _cameraVisability;
 
         BonusesSpawnSystem _bonusesSpawnSystem;
+
+        WeaponService _weaponService;
         private void Start()
         {
             _player = GetComponentInChildren<Player>();
@@ -52,7 +55,15 @@ namespace GameSceneInitialization
 
             _cameraVisability = GetComponentInChildren<CameraVisability>();
 
-            _bonusesSpawnSystem.Initialze(_cameraVisability, _player);
+            _weaponService = GetComponentInChildren<WeaponService>();
+
+            IShootInput shootInput = GameCore.Instance().
+                InputServiceProvider.Get(typeof(ShootInputService))
+                as ShootInputService;
+
+            _weaponService.Initialize(_player, shootInput);
+
+            _bonusesSpawnSystem.Initialze(_cameraVisability, _player, _weaponService);
         }
     }
 }

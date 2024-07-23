@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Weapons
+namespace BonusLogic.Weapon
 {
     public interface IGun
     {

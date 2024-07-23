@@ -105,6 +105,34 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""ShootMap"",
+            ""id"": ""0624b666-8dd2-4f90-b977-dcd5d2b25e6d"",
+            ""actions"": [
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a5ab910-8b5e-498b-8ad1-4dabd4500f9d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""007820b0-85ea-49c4-b4f8-5245483ef267"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -129,6 +157,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         // MovementMap
         m_MovementMap = asset.FindActionMap("MovementMap", throwIfNotFound: true);
         m_MovementMap_Movement = m_MovementMap.FindAction("Movement", throwIfNotFound: true);
+        // ShootMap
+        m_ShootMap = asset.FindActionMap("ShootMap", throwIfNotFound: true);
+        m_ShootMap_Shoot = m_ShootMap.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -232,6 +263,52 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         }
     }
     public MovementMapActions @MovementMap => new MovementMapActions(this);
+
+    // ShootMap
+    private readonly InputActionMap m_ShootMap;
+    private List<IShootMapActions> m_ShootMapActionsCallbackInterfaces = new List<IShootMapActions>();
+    private readonly InputAction m_ShootMap_Shoot;
+    public struct ShootMapActions
+    {
+        private @GameControls m_Wrapper;
+        public ShootMapActions(@GameControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Shoot => m_Wrapper.m_ShootMap_Shoot;
+        public InputActionMap Get() { return m_Wrapper.m_ShootMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ShootMapActions set) { return set.Get(); }
+        public void AddCallbacks(IShootMapActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ShootMapActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ShootMapActionsCallbackInterfaces.Add(instance);
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
+        }
+
+        private void UnregisterCallbacks(IShootMapActions instance)
+        {
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
+        }
+
+        public void RemoveCallbacks(IShootMapActions instance)
+        {
+            if (m_Wrapper.m_ShootMapActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IShootMapActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ShootMapActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ShootMapActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ShootMapActions @ShootMap => new ShootMapActions(this);
     private int m_PlayerSchemeSchemeIndex = -1;
     public InputControlScheme PlayerSchemeScheme
     {
@@ -244,5 +321,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     public interface IMovementMapActions
     {
         void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface IShootMapActions
+    {
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

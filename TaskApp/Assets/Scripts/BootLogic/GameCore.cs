@@ -32,6 +32,11 @@ namespace BootLogic
                 new MovementInputService(_inputActions);
 
             InputServiceProvider.RegisterService(movementInputService);
+
+            ShootInputService shootInputService
+                = new ShootInputService(_inputActions);
+
+            InputServiceProvider.RegisterService(shootInputService);
         }
     }
 }
