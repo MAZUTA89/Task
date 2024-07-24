@@ -10,15 +10,15 @@ namespace PlayerCode
         private Transform _playerTarget;
         private Vector3 _targetPosition;
         private Vector3 _offset;
-        float _followSpeed = 100f;
-
+        float _followSpeed = 60f;
+        Vector3 _velocity;
         public void Initialize(Transform playerTarget)
         {
             _playerTarget = playerTarget;
             _offset = playerTarget.position - _cameraObject.position;
         }
 
-        public void LateUpdate()
+        public void Perform(float ticks)
         {
             _targetPosition = GetCameraFollowPosition(_offset,
                 _playerTarget.position);
@@ -32,7 +32,9 @@ namespace PlayerCode
                 clampedZ);
 
             Vector3 newPos = Vector3.Lerp(_cameraObject.position
-                ,clampedPosition, Time.deltaTime * _followSpeed);
+                , clampedPosition, ticks * _followSpeed);
+            //Vector3 newPos = Vector3.SmoothDamp(_cameraObject.position
+            //    , clampedPosition, ref _velocity,  0.3f);
 
             _cameraObject.position = newPos;
         }

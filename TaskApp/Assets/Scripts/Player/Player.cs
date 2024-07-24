@@ -25,10 +25,12 @@ namespace PlayerCode
         IMovementInput _movementInput;
 
         WeaponService _weaponService;
+        CameraFollow _cameraFollow;
 
         public void Initialize(IMovementInput movementInput,
-            WeaponService weaponService)
+            WeaponService weaponService, CameraFollow cameraFollow)
         {
+
             _movementInput = movementInput;
             _weaponService = weaponService;
 
@@ -49,10 +51,14 @@ namespace PlayerCode
             var bonusesPanel = GameCore.Instance().UI.BonusesPanel;
 
             PlayerBoosts = new PlayerBoosts(bonusesPanel);
+            _cameraFollow = cameraFollow;
+
+            _cameraFollow.Initialize(PlayerTransform);
         }
 
         public void Update()
         {
+            _cameraFollow.Perform(Time.deltaTime);
             PlayerMovement.Update(Time.deltaTime);
             PlayerRotation.Update(Time.deltaTime);
             PlayerBoosts.Update(Time.deltaTime);

@@ -55,9 +55,8 @@ namespace GameSceneInitialization
                 Get(typeof(MovementInputService))
                 as MovementInputService;
 
-            _player.Initialize(_movementInput, _weaponService);
 
-            _cameraFollow.Initialize(_player.PlayerTransform);
+            _player.Initialize(_movementInput, _weaponService, _cameraFollow);
 
             IDangerZoneFactory speedZoneFactory =
                 new DangerZoneFactory(_zoneSpawner.SpeedZoneTemplate, _player);
