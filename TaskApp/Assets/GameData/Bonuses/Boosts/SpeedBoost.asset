@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990381460bb97a54187aa1edc93025d6, type: 3}
   m_Name: SpeedBoost
   m_EditorClassIdentifier: 
-  ActiveTime: 3.24
+  ActiveTime: 5
   SpeedRatio: 1.58

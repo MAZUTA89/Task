@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlayerCode;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,20 +19,35 @@ namespace EnemyLogic
 
         Transform _playerTransform;
 
-        public void Initialize(Transform playerTransform,
+        bool _isGameOver;
+
+        Player _player;
+
+        public void Initialize(Player player,
             CameraVisability cameraVisability)
         {
             _enemies = new List<IEnemy>(_enemiesTemplates);
 
-            _playerTransform = playerTransform;
-            _enemySpawner = new EnemySpawner(_playerTransform,
+           _player = player;
+            _enemySpawner = new EnemySpawner(_player,
                 this, cameraVisability);
 
             _liveEnemies = new List<Enemy>();
         }
 
+        private void OnEnable()
+        {
+            GameEvents.OnEndGameEvent += OnEndGame;
+        }
+        private void OnDisable()
+        {
+            GameEvents.OnEndGameEvent -= OnEndGame;
+        }
+
         private void Update()
         {
+            if (_isGameOver)
+                return;
             _enemySpawner.Update(Time.deltaTime);
         }
 
@@ -48,6 +64,15 @@ namespace EnemyLogic
         public List<Enemy> GetAliveEnemies()
         {
             return _liveEnemies;
+        }
+
+        void OnEndGame()
+        {
+            _isGameOver = true;
+            for (int i = 0; i < _liveEnemies.Count; i++)
+            {
+                Destroy(_liveEnemies[i].gameObject);
+            }
         }
     }
 }

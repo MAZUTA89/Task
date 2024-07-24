@@ -1,4 +1,7 @@
-﻿using GameSO;
+﻿using BonusLogic;
+using BonusLogic.Boosts;
+using GameSO;
+using PlayerCode;
 using Score;
 using System;
 using System.Collections.Generic;
@@ -45,10 +48,13 @@ namespace EnemyLogic
         int _currentHP;
         Vector3 _direction;
 
-        public virtual void Initialize(Transform playerTransform,
+        PlayerBoosts _playerBoosts;
+
+        public virtual void Initialize(Player player,
             EnemyService enemyService, GameScore gameScore)
         {
-            _playerTransform = playerTransform;
+            _playerTransform = player.PlayerTransform;
+            _playerBoosts = player.PlayerBoosts;
             _enemyService = enemyService;
             _gameScore = gameScore;
 
@@ -63,8 +69,6 @@ namespace EnemyLogic
 
         private void Update()
         {
-            
-
             Quaternion targetRotation = Quaternion.LookRotation(_direction);
 
             transform.rotation = Quaternion.RotateTowards(
@@ -73,9 +77,14 @@ namespace EnemyLogic
             if(Vector3.Distance(_playerTransform.position,
                 transform.position) <= _enemySO.CatchDistance)
             {
-                Debug.Log("Поймал!");
-                Destroy(gameObject);
-                return;
+                if(!_playerBoosts.IsBoostActive<ShieldBoost>())
+                {
+                    GameEvents.InvokeEndGameEvent();
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
         private void LateUpdate()

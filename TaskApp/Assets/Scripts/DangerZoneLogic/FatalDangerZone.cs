@@ -1,4 +1,6 @@
-﻿using BootLogic;
+﻿using BonusLogic;
+using BonusLogic.Boosts;
+using BootLogic;
 using GameUI;
 using PlayerCode;
 using System;
@@ -10,20 +12,18 @@ namespace DangerZoneCode
 {
     public class FatalDangerZone : DangerZone
     {
-        FinalGamePanel _finalGamePanel;
-        GamePanel _gamePanel;
-        
+        PlayerBoosts _playerBoosts;
         private void Start()
         {
-            _finalGamePanel = GameCore.Instance().UI.FinalGamePanel;
-            _gamePanel = GameCore.Instance().UI.GamePanel;
+            _playerBoosts = Player.PlayerBoosts;
         }
         protected override void OnPlayerEnter(PlayerMovement playerMovement)
         {
-            //Time.timeScale = 0f;
-            _finalGamePanel.Active();
-            _gamePanel.Deactivate();
-            PlayerMovement.Lock();
+            if(!_playerBoosts.IsBoostActive<ShieldBoost>())
+            {
+                GameEvents.InvokeEndGameEvent();
+            }
+            
         }
 
         protected override void OnPlayerExit(PlayerMovement playerMovement)

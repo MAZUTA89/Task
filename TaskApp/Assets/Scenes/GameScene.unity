@@ -318,7 +318,7 @@ Transform:
   m_GameObject: {fileID: 55555397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.861}
+  m_LocalPosition: {x: 0, y: 0, z: 1.106}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -614,8 +614,8 @@ GameObject:
   - component: {fileID: 306558954}
   - component: {fileID: 306558953}
   - component: {fileID: 306558952}
-  - component: {fileID: 306558951}
   - component: {fileID: 306558955}
+  - component: {fileID: 306558956}
   m_Layer: 0
   m_Name: Grenate
   m_TagString: Untagged
@@ -639,20 +639,6 @@ Transform:
   - {fileID: 55555398}
   m_Father: {fileID: 914586694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &306558951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306558949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc738fd1d8720814a9118fa88f20cf35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bulletSpawnPoint: {fileID: 55555398}
-  _gun: {fileID: 11400000, guid: 68dffaf48dac8c3438e2c29f58509be5, type: 2}
 --- !u!65 &306558952
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -823,6 +809,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &306558956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306558949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98100550a9c0be54f8cf036934c43c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletSpawnPoint: {fileID: 55555398}
+  _gun: {fileID: 11400000, guid: 68dffaf48dac8c3438e2c29f58509be5, type: 2}
+  _enemyService: {fileID: 905629060}
+  _bullet: {fileID: 4478820550755138275, guid: 8c8aa3518048c3245bf16249b75c4987, type: 3}
 --- !u!1 &454037735 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6049815669350476426, guid: 42508c9c68827f14185751c9e888f4f5, type: 3}
@@ -1695,7 +1697,7 @@ MonoBehaviour:
   - {fileID: 617423578}
   - {fileID: 1113006566}
   - {fileID: 1477917530}
-  - {fileID: 306558951}
+  - {fileID: 306558956}
 --- !u!1 &1477917523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,6 +2182,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2382163774821945860, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
+      propertyPath: m_Mass
+      value: 0.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382163774821945860, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 4752250711133355615, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
       propertyPath: m_Name
       value: Player

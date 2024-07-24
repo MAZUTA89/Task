@@ -27,6 +27,17 @@ namespace GameSceneInitialization
 
         WeaponService _weaponService;
         EnemyService _enemyService;
+
+        IMovementInput _movementInput;
+        IShootInput _shootInput;
+        private void OnEnable()
+        {
+            GameEvents.OnEndGameEvent += OnEndGame;
+        }
+        private void OnDisable()
+        {
+            GameEvents.OnEndGameEvent -= OnEndGame;
+        }
         private void Start()
         {
             _player = GetComponentInChildren<Player>();
@@ -39,11 +50,11 @@ namespace GameSceneInitialization
 
             _enemyService = GetComponentInChildren<EnemyService>();
 
-            var movementInput = GameCore.Instance().InputServiceProvider.
+             _movementInput = GameCore.Instance().InputServiceProvider.
                 Get(typeof(MovementInputService))
                 as MovementInputService;
 
-            _player.Initialize(movementInput, _weaponService);
+            _player.Initialize(_movementInput, _weaponService);
 
             _cameraFollow.Initialize(_player.PlayerTransform);
 
@@ -60,17 +71,26 @@ namespace GameSceneInitialization
 
             _gamePanel.Activate();
 
-            
-
-            IShootInput shootInput = GameCore.Instance().
+            _shootInput = GameCore.Instance().
                 InputServiceProvider.Get(typeof(ShootInputService))
                 as ShootInputService;
 
-            _weaponService.Initialize(_player, shootInput);
+            _weaponService.Initialize(_player, _shootInput);
 
             _bonusesSpawnSystem.Initialze(_cameraVisability, _player, _weaponService);
 
-            _enemyService.Initialize(_player.PlayerTransform, _cameraVisability);
+            _enemyService.Initialize(_player, _cameraVisability);
+
+            MouseExtention.Init(_player.PlayerTransform);
+        }
+
+        void OnEndGame()
+        {
+            _movementInput.Disable();
+            _shootInput.Disable();
+
+            GameCore.Instance().UI.GamePanel.Deactivate();
+            GameCore.Instance().UI.FinalGamePanel.Active();
         }
     }
 }

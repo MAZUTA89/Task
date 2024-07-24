@@ -27,7 +27,7 @@ namespace PlayerCode
 
             if(_weaponService.HasWeapon)
             {
-                Vector3 targetPoint = GetMousePosition();
+                Vector3 targetPoint = MouseExtention.GetMousePosition();
 
                 Vector3 targetDirection = targetPoint - _playerTransform.position;
 
@@ -42,25 +42,6 @@ namespace PlayerCode
                 float angle = Mathf.SmoothDampAngle(_playerTransform.eulerAngles.y,
                     targetAngle, ref _withOutWeaponRotationSpeed, ticks);
                 _playerTransform.rotation = Quaternion.Euler(0, angle, 0);
-            }
-        }
-
-        public Vector3 GetMousePosition()
-        {
-            Plane plane = new Plane(Vector3.up, _playerTransform.position);
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if(plane.Raycast(ray, out float hitDist))
-            {
-                Vector3 targetPoint = ray.GetPoint(hitDist);
-
-                return targetPoint;
-                
-            }
-            else
-            {
-                return _playerTransform.forward;
             }
         }
     }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Score;
+using PlayerCode;
 
 namespace EnemyLogic
 {
@@ -12,7 +13,7 @@ namespace EnemyLogic
         const float c_minSpawnTime = 0.5f;
 
         List<IEnemy> _templates;
-        Transform _playerTransform;
+        Player _player;
         CameraVisability _visability;
         EnemyService _enemyService;
         GameScore _gameScore;
@@ -38,12 +39,12 @@ namespace EnemyLogic
         float _currentSpawnTime;
 
 
-        public EnemySpawner(Transform playerTransform, EnemyService enemyService,
+        public EnemySpawner(Player player, EnemyService enemyService,
             CameraVisability cameraVisability)
         {
             _visability = cameraVisability;
             _templates = enemyService.EnemiesTemplates;
-            _playerTransform = playerTransform;
+            _player = player;
             _spawnTime = c_startTime;
             _enemyService = enemyService;
             _gameScore = new GameScore();
@@ -91,7 +92,7 @@ namespace EnemyLogic
                     var enemyObj = GameObject.Instantiate(enemy, point,
                         Quaternion.identity, null);
 
-                    enemyObj.Initialize(_playerTransform,
+                    enemyObj.Initialize(_player,
                         _enemyService, _gameScore);
 
                     break;

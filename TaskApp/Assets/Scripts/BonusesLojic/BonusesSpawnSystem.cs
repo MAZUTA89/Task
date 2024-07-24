@@ -19,6 +19,7 @@ namespace BonusLogic
         WeaponSpawner _weaponSpawner;
         Player _player;
         WeaponService _weaponService;
+        bool _isGameOver;
         public void Initialze(CameraVisability cameraVisability, Player player,
             WeaponService weaponService)
         {
@@ -54,10 +55,27 @@ namespace BonusLogic
             _weaponSpawner = new WeaponSpawner(_weaponService, _player,
                 _visability, factoryProvider);
         }
+
+        private void OnEnable()
+        {
+            GameEvents.OnEndGameEvent += OnEndGame;
+        }
+        private void OnDisable()
+        {
+            GameEvents.OnEndGameEvent -= OnEndGame;
+        }
         public void Update()
         {
-            _boostsSpawner.Update(Time.deltaTime);
-            _weaponSpawner.Update(Time.deltaTime);
+            if (_isGameOver == false)
+            {
+                _boostsSpawner.Update(Time.deltaTime);
+                _weaponSpawner.Update(Time.deltaTime);
+            }
+        }
+
+        void OnEndGame()
+        {
+            _isGameOver = true;
         }
     }
 }

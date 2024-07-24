@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e79d7331072932f49bf9871f9bfa82d8, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  ActiveTime: 1.84
+  ActiveTime: 5

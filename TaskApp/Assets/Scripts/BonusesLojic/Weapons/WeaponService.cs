@@ -28,6 +28,7 @@ namespace BonusLogic.Weapon
         {
             _weaponList = new List<IWeapon>(_weapons);
             _shootInput = shootInput;
+            _shootInput.Enable();
         }
 
         public void Update()
@@ -40,8 +41,6 @@ namespace BonusLogic.Weapon
 
         public void SwitchWeapon(string gunName)
         {
-            
-
             IWeapon newWeapon = null;
             foreach (IWeapon weapon in _weaponList)
             {
@@ -66,7 +65,6 @@ namespace BonusLogic.Weapon
             }
 
             _currentWeapon.GetObject().SetActive(true);
-           
         }
         public IWeapon GetCurrentWeapon()
         {
