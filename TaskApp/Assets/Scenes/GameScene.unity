@@ -463,6 +463,51 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 8604383c0901be74ab3ca15d2b45abcd, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &128495312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 128495313}
+  - component: {fileID: 128495314}
+  m_Layer: 0
+  m_Name: FPS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &128495313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128495312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 335.02667, y: 176.1722, z: 402.94247}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &128495314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128495312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ae9c23e87c2aa4297c4bc61b78266a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FrameRate: 60
 --- !u!1 &272386133
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,11 +2229,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2382163774821945860, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
       propertyPath: m_Mass
-      value: 0.0000001
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382163774821945860, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382163774821945860, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2382163774821945860, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
       propertyPath: m_Constraints
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382163774821945860, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382163774821945860, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4752250711133355615, guid: ab29cd2ebadbefe4988a5efb73f56307, type: 3}
       propertyPath: m_Name
@@ -2512,3 +2573,4 @@ SceneRoots:
   - {fileID: 2025549455}
   - {fileID: 2038235143}
   - {fileID: 53317334}
+  - {fileID: 128495313}

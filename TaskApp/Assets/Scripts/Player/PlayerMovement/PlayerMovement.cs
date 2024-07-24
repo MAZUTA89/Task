@@ -8,7 +8,6 @@ namespace PlayerCode
     {
         Rigidbody _rb;
         Transform _playerTransform;
-        Vector3 _direction;
         IMovementInput _movementInput;
         public float MovementSpeed
         {
@@ -28,9 +27,11 @@ namespace PlayerCode
                 }
             }
         }
-        float _movementSpeed = 4f;
+        float _movementSpeed = 0.4f;
         float _defaultSpeed;
         public Vector3 Movement { get; private set; }
+
+        Vector3 _newPostition;
 
         public PlayerMovement(Rigidbody rb,
             IMovementInput movementInput,
@@ -52,9 +53,9 @@ namespace PlayerCode
 
         public void FixedUpdate(float fixedTicks)
         {
-            Vector3 newPos = Vector3.Lerp(_rb.position,
+            _newPostition = Vector3.Lerp(_rb.position,
                 _rb.position + Movement * _movementSpeed, fixedTicks);
-            _rb.MovePosition(newPos);
+            _rb.MovePosition(_newPostition);
         }
 
         public void ChangeSpeed(float speed)
