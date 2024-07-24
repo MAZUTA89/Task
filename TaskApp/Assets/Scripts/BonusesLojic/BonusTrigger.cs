@@ -1,7 +1,4 @@
-﻿using BonusLogic;
-using PlayerCode;
-using System;
-using System.Collections.Generic;
+﻿using PlayerCode;
 using UnityEngine;
 
 namespace BonusesLojic

@@ -1,7 +1,5 @@
 ﻿using BonusesLojic;
-using BonusLogic;
 using PlayerCode;
-using UnityEngine;
 
 namespace BonusLogic.Boosts
 {

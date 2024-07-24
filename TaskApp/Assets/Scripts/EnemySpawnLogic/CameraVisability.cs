@@ -1,7 +1,5 @@
 using Map;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 [RequireComponent(typeof(MapSettings))]
 public class CameraVisability : MonoBehaviour

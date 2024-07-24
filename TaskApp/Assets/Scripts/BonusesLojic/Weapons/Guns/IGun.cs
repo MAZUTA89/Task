@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-
+﻿
 namespace BonusLogic.Weapon
 {
     public interface IGun

@@ -1,7 +1,5 @@
 ﻿using EnemyLogic;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 namespace BonusLogic.Weapon
 {

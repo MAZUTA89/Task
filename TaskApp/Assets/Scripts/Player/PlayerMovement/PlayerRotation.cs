@@ -1,5 +1,4 @@
 ﻿using BonusLogic.Weapon;
-using GameInput;
 using UnityEngine;
 
 namespace PlayerCode

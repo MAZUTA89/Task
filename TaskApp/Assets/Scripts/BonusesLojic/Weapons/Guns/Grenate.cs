@@ -1,6 +1,4 @@
 ﻿using EnemyLogic;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BonusLogic.Weapon

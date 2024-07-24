@@ -2,7 +2,6 @@
 using GameInput;
 using SceneSwitch;
 using UnityEngine;
-using Sounds;
 using Score;
 namespace BootLogic
 {

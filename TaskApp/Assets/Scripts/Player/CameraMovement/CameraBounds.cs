@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace PlayerCode
+﻿namespace PlayerCode
 {
     public struct CameraBounds
     {

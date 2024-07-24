@@ -6,7 +6,6 @@ namespace BonusLogic.Boosts
 {
     public class ShieldBoost : Boost
     {
-
         public ShieldBoost(Player player, Image boostImage,
             BoostSO boostSO) : base(player, boostImage)
         {

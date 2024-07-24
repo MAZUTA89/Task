@@ -5,9 +5,7 @@ using DangerZoneCode;
 using GameUI;
 using GameInput;
 using PlayerCode;
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using EnemyLogic;
 using Score;
 
