@@ -3,21 +3,19 @@ using BonusLogic.Boosts;
 using GameSO;
 using PlayerCode;
 using Score;
-using System;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 namespace EnemyLogic
 {
-    
+    [RequireComponent(typeof(NavMeshAgent))]
     public class Enemy : MonoBehaviour, IEnemy
     {
         const float c_rotationSpeed = 400f;
 
         [SerializeField] private EnemySO _enemySO;
-        CharacterController _characterController;
+        NavMeshAgent _agent;
         public int HP
         {
             get
@@ -58,7 +56,8 @@ namespace EnemyLogic
             _enemyService = enemyService;
             _gameScore = gameScore;
 
-            _characterController = GetComponent<CharacterController>();
+            _agent = GetComponent<NavMeshAgent>();
+            _agent.speed = _enemySO.Speed;
         }
 
         private void Start()
@@ -69,10 +68,8 @@ namespace EnemyLogic
 
         private void Update()
         {
-            Quaternion targetRotation = Quaternion.LookRotation(_direction);
-
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation, targetRotation, c_rotationSpeed * Time.deltaTime);
+            _agent.destination = _playerTransform.position;
+            
            
             if(Vector3.Distance(_playerTransform.position,
                 transform.position) <= _enemySO.CatchDistance)
@@ -87,16 +84,7 @@ namespace EnemyLogic
                 }
             }
         }
-        private void LateUpdate()
-        {
-            _direction = _playerTransform.position -
-                transform.position;
-
-            _direction = new Vector3(_direction.x, 0, _direction.z).normalized;
-
-            _characterController.Move(_direction * Time.deltaTime
-                * _enemySO.Speed);
-        }
+        
         public virtual void TakeDamage(int damage)
         {
             HP -= damage;
