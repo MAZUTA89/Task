@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 namespace EnemyLogic
 {
-    [RequireComponent(typeof(CharacterController))]
+    
     public class Enemy : MonoBehaviour, IEnemy
     {
         const float c_rotationSpeed = 400f;
