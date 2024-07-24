@@ -1,4 +1,5 @@
 ﻿using PlayerCode;
+using Score;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,13 +25,14 @@ namespace EnemyLogic
         Player _player;
 
         public void Initialize(Player player,
-            CameraVisability cameraVisability)
+            CameraVisability cameraVisability,
+            GameScore gameScore)
         {
             _enemies = new List<IEnemy>(_enemiesTemplates);
 
            _player = player;
             _enemySpawner = new EnemySpawner(_player,
-                this, cameraVisability);
+                this, cameraVisability, gameScore);
 
             _liveEnemies = new List<Enemy>();
         }

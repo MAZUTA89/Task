@@ -9,6 +9,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using EnemyLogic;
+using Score;
 
 
 namespace GameSceneInitialization
@@ -30,6 +31,8 @@ namespace GameSceneInitialization
 
         IMovementInput _movementInput;
         IShootInput _shootInput;
+
+        GameScore _currentScore;
         private void OnEnable()
         {
             GameEvents.OnEndGameEvent += OnEndGame;
@@ -79,9 +82,16 @@ namespace GameSceneInitialization
 
             _bonusesSpawnSystem.Initialze(_cameraVisability, _player, _weaponService);
 
-            _enemyService.Initialize(_player, _cameraVisability);
+            _currentScore = new GameScore();
+
+            _enemyService.Initialize(_player, _cameraVisability, _currentScore);
 
             MouseExtention.Init(_player.PlayerTransform);
+        }
+
+        private void Update()
+        {
+            
         }
 
         void OnEndGame()
@@ -91,6 +101,21 @@ namespace GameSceneInitialization
 
             GameCore.Instance().UI.GamePanel.Deactivate();
             GameCore.Instance().UI.FinalGamePanel.Active();
+
+            if(_currentScore.Score > 
+                GameCore.Instance().GameScore.Score)
+            {
+                
+
+                GameCore.Instance().UI.FinalGamePanel.NewRecordText.SetActive(true);
+
+                _currentScore.Save();
+
+                GameCore.Instance().GameScore.Load();
+            }
+
+            GameCore.Instance().UI.FinalGamePanel.ScoreValueText.text =
+                    _currentScore.Score.ToString();
         }
     }
 }

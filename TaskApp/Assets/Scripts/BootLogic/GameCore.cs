@@ -3,6 +3,7 @@ using GameInput;
 using SceneSwitch;
 using UnityEngine;
 using Sounds;
+using Score;
 namespace BootLogic
 {
     [DefaultExecutionOrder(-50)]
@@ -12,7 +13,7 @@ namespace BootLogic
         public InputServiceProvider InputServiceProvider { get; private set; }
         public UI UI { get; private set; }
 
-        public SoundsService SoundsService { get; private set; }
+        public GameScore GameScore { get; private set; }
 
         protected override void Awake()
         {
@@ -25,7 +26,9 @@ namespace BootLogic
 
             UI.Initialize(sceneSwitcher);
 
-            SoundsService = GetComponent<SoundsService>();
+            GameScore = new GameScore();
+
+            GameScore.Load();
         }
 
         void InitializeInputServices()

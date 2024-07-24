@@ -14,16 +14,19 @@ namespace GameUI
         [SerializeField] private Button _restartButton;
 
         [SerializeField] private TextMeshProUGUI _scoreValueText;
+        [SerializeField] private GameObject _newRecordText;
 
         public Button MenuButton => _menuButton;
         public Button RestartButton => _restartButton;
         public TextMeshProUGUI ScoreValueText => _scoreValueText;
+        public GameObject NewRecordText => _newRecordText;
 
         SceneSwitcher _sceneSwitcher;
         
         public void Initialize(SceneSwitcher sceneSwitcher)
         {
             _sceneSwitcher = sceneSwitcher;
+            NewRecordText.SetActive(false);
         }
         private void OnEnable()
         {

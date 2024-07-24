@@ -1,6 +1,8 @@
 ﻿using BonusLogic;
 using BonusLogic.Boosts;
+using BootLogic;
 using GameSO;
+using GameUI;
 using PlayerCode;
 using Score;
 
@@ -40,6 +42,8 @@ namespace EnemyLogic
 
         public float SpawnChance => _enemySO.SpawnChance;
 
+        GamePanel _gamePanel;
+
         Transform _playerTransform;
         EnemyService _enemyService;
         GameScore _gameScore;
@@ -58,6 +62,8 @@ namespace EnemyLogic
 
             _agent = GetComponent<NavMeshAgent>();
             _agent.speed = _enemySO.Speed;
+
+            _gamePanel = GameCore.Instance().UI.GamePanel;
         }
 
         private void Start()
@@ -91,6 +97,8 @@ namespace EnemyLogic
             if(HP == 0)
             {
                 _gameScore.AddScore(_enemySO.ScorePoints);
+                _gamePanel.ScoreValueText.text
+                    = _gameScore.Score.ToString();
                 Destroy(gameObject);
             }
         }

@@ -40,14 +40,14 @@ namespace EnemyLogic
 
 
         public EnemySpawner(Player player, EnemyService enemyService,
-            CameraVisability cameraVisability)
+            CameraVisability cameraVisability, GameScore gameScore)
         {
             _visability = cameraVisability;
             _templates = enemyService.EnemiesTemplates;
             _player = player;
             _spawnTime = c_startTime;
             _enemyService = enemyService;
-            _gameScore = new GameScore();
+            _gameScore = gameScore;
         }
 
         public void Update(float ticks)

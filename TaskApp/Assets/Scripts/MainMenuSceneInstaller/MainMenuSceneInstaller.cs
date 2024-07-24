@@ -14,6 +14,9 @@ namespace MenuSceneInitialization
             _mainMenuPanel = GameCore.Instance().UI.MainMenuPanel;
             _mainMenuPanel.Activate();
 
+            int gameScore = GameCore.Instance().GameScore.Score;
+
+            _mainMenuPanel.ScoreValueText.text = gameScore.ToString();
         }
     }
 }
